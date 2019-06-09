@@ -51,8 +51,6 @@ Jellyfish is inspired in part by:
 - Java
 - TypeScript
 - Python
-- PHP
-    - lol I'm just kidding, fuck that language
 
 ## Typing
 
