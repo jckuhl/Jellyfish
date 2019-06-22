@@ -61,7 +61,7 @@ Two types of variables:
 * Property - proprety of an object
 
 Declaration:
-* `let` - mutable
+* `let` - mutable (**Changing to `var`**)
 * `const` - can't be reassigned, mutable
 * `final` - can't be reassigned or mutated
 
@@ -1399,6 +1399,65 @@ Types are often used for typechecking in functions:
 Type will throw `TypeError` if types don't match
 
 I was going to also have interfaces, but come to think of it, types are interfaces, so never mind that
+
+Types can be final.  A final type or a final abstract class however behaves differently than a final concrete object or class.  If a type or abstract class is marked final, that means any class that _inherits_ from the type/abstract class is final.  This is only true for constructs that require subclassing and cannot be instantiated themselves.
+
+#### Inheritence/Extension/Interface on object literals:
+
+Typing objects, uses colon,
+
+`identifier:type/class = {}`
+
+```
+const object: HTTPManager = {
+    //...
+}
+```
+
+If `HTTPManager` is an interface or abstract class, it must implement abstract methods and conform to type shape
+
+Inheritence uses double colon,
+
+`identifier::superclass = {}`
+
+```
+const object::HTTPManager = {
+    //...
+}
+```
+
+An example
+
+```
+const A = {
+    print(): void {
+        stdout.println("This is A")
+    };
+}
+
+const B::A = {}
+
+B.print() // outputs "This is A"
+```
+
+Extension
+
+Adds to a class.
+
+```
+const HelloString->String = {
+    hello() {
+        this.concat("hello!");
+    }
+}
+
+using HelloString; //still not entirely sure about this
+
+const str:String = "abcde".hello();
+// outputs "abcdehello!"
+```
+
+Object inherits from `HTTPManager`.  Object therefore has access to any methods and properties (with protected or greater access) of superclass.
 
 ### Namespacing
 
